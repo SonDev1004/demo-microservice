@@ -1,0 +1,16 @@
+server:
+  port: 8761 # http://localhost:8761
+spring:
+  application:
+    name: discovery-server
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+
+# thứ tự chạy các service
+# 1. discovery-server
+# 2. user-service vs order-service
+# 3. api-gateway
