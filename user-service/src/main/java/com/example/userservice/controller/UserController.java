@@ -1,5 +1,6 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.dto.response.UserDto;
 import com.example.userservice.entity.User;
 import com.example.userservice.entity.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,12 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public UserDto getUserById(@PathVariable("id") Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        return new UserDto(user.getId(), user.getUsername(), user.getEmail());
     }
 }
