@@ -3,6 +3,7 @@ package com.example.userservice.controller;
 import com.example.userservice.dto.response.UserDto;
 import com.example.userservice.entity.User;
 import com.example.userservice.entity.UserRepository;
+import com.example.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
     private final UserRepository userRepository;
 
     @PostMapping
@@ -21,8 +23,13 @@ public class UserController {
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
+
+//    @GetMapping
+//    public List<User> getAllUsers() {
+//        return userRepository.findAll();
+//    }
 
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable("id") Long id){
