@@ -14,3 +14,11 @@ spring:
     hibernate:
       dll-auto: update
     show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer: # Kafka producer configuration
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false # thử true để xem lỗi
